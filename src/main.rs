@@ -1,5 +1,6 @@
 use axum::{http::StatusCode, routing::get, Json, Router};
 use serde::Serialize;
+use std::collections::HashMap;
 use std::net::SocketAddr;
 
 #[tokio::main]
@@ -28,8 +29,20 @@ async fn get_user() -> (StatusCode, Json<User>) {
     (StatusCode::ACCEPTED, Json(user))
 }
 
+// async fn create_user(Json(user): Json<CreateUser>) -> (StatusCode, Json<User>) {
+//     let id = 1;
+//     let name = user.name;
+
+//     println!("{:?}", id);
+//     println!("{:?}", name);
+// }
+
 #[derive(Serialize)]
 struct User {
     id: u64,
+    name: String,
+}
+
+struct CreateUser {
     name: String,
 }
